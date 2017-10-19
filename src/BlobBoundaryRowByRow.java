@@ -1,12 +1,12 @@
 import java.util.LinkedList;
 
-public class BlobBoundary {
+public class BlobBoundaryRowByRow {
     public static void main(String[] args) {
         boolean[] row0 = {true, false, false};
         boolean[] row1 = {true, true, false};
         boolean[] row2 = {false, true, false};
         boolean[][] input = {row0, row1, row2};
-        BlobBoundary bb = new BlobBoundary();
+        BlobBoundaryRowByRow bb = new BlobBoundaryRowByRow();
         bb.solve(input);
     }
 
