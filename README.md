@@ -41,9 +41,10 @@ I didn't bother looking too long because I thought it
 would be more interesting to roll my own in this situation.
 
 ### The solution
-The algorithm is relatively simple.  I tend to avoid subclassing,
-but extending ArrayList was a quick a elegant way to count
-Boolean value reads.
+The algorithm is relatively simple.  I tend to avoid subclassing, preferring delegation,
+but extending ArrayList was a quick and elegant way to count
+Boolean value reads. Using a single list to represent the cells, instead of a list of lists,
+ was more efficient and probably more elegant.
 
 #### Correctness
 This solution has not been thoroughly tested, but I'm confident given
