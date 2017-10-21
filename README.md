@@ -1,10 +1,10 @@
 # blobboundary
 
-This is a solution to the blob boundary problem, 
-and is named after a character on Arrested Development, Bob Loblaw.
+This is a solution to the blob boundary problem 
+the description refers to a character on Arrested Development, Bob Loblaw.
 I spent about half a day working on this.
 
-###Process
+### Process
 I first simply created an array of arrays to represent the grid, 
 and then searched linearly, row by row. 
 That solution is represented in BlobBoundaryRowByRow 
@@ -19,16 +19,16 @@ Next, I wondered if any helpful libraries existed.
 I didn't bother looking too long because I thought it 
 would be more interesting to roll my own in this situation.
 
-###The solution
+### The solution
 The algorithm is relatively simple.  I tend to avoid subclassing,
 but extending ArrayList was a quick a elegant way to count
 Boolean value reads.
 
-####Correctness
+#### Correctness
 This solution has not been thoroughly tested, but I'm confident given
 reasonable input that the solution is correct. 
 
-####Performance
+#### Performance
 I'm not sure how to go about optimizing the breadth-first search. 
 
 The sample solution indicated better performance than I was able to 
@@ -38,7 +38,7 @@ to make better guesses for finding an initial starting cell.
 Generally, a lot more time would be needed to thoroughly approach 
 optimization.
 
-####Elegance and Clarity
+#### Elegance and Clarity
 I spent probably 1/2 of my time making the solution elegant/concise
 and easy to read and understand.
 
