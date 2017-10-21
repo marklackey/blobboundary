@@ -20,26 +20,40 @@ class TableCell {
     }
 
     void visit(Boundaries boundaries) {
-        if (!visited) {
-            visited = true;
-            if (cachedValue == null) {
-                cachedValue = expensiveOperationToGetCellValue();
-            }
+        visited = true;
+        if (cachedValue == null) {
+            cachedValue = expensiveOperationToGetCellValue();
         }
         if (cachedValue) {
-            if ((index / dim) <= boundaries.top) {
-                boundaries.top = index / dim;
-            }
-            if ((index / dim) >= boundaries.bottom) {
-                boundaries.bottom = index / dim;
-            }
-            if ((index % dim) <= boundaries.left) {
-                boundaries.left = index % dim;
-            }
-            if ((index % dim) >= boundaries.right) {
-                boundaries.right = index % dim;
-            }
+            updateBoundaryValues(boundaries);
             visitAdjacent(boundaries);
+        }
+    }
+
+    public boolean readExpensiveCellValue() {
+        if (cachedValue == null) { //currently unnecessary logic, but good in principle
+            cachedValue = expensiveOperationToGetCellValue();
+        }
+        return cachedValue;
+    }
+
+    //This method is not actually expensive, but it's named like this to remind us of our objectives in this exercise
+    private boolean expensiveOperationToGetCellValue() {
+        return input.get(index);
+    }
+
+    private void updateBoundaryValues(Boundaries boundaries) {
+        if (row() <= boundaries.top) {
+            boundaries.top = index / dim;
+        }
+        if (row() >= boundaries.bottom) {
+            boundaries.bottom = index / dim;
+        }
+        if (column() <= boundaries.left) {
+            boundaries.left = index % dim;
+        }
+        if (column() >= boundaries.right) {
+            boundaries.right = index % dim;
         }
     }
 
@@ -48,18 +62,22 @@ class TableCell {
         TableCell down = down();
         TableCell left = left();
         TableCell right = right();
-        if (up != null && !up.isVisited()) {
+        if (shouldVisit(up)) {
             up.visit(boundaries);
         }
-        if (down != null && !down.isVisited()) {
+        if (shouldVisit(down)) {
             down.visit(boundaries);
         }
-        if (left != null && !left.isVisited()) {
+        if (shouldVisit(left)) {
             left.visit(boundaries);
         }
-        if (right != null && !right.isVisited()) {
+        if (shouldVisit(right)) {
             right.visit(boundaries);
         }
+    }
+
+    private boolean shouldVisit(TableCell tableCell) {
+        return tableCell != null && !tableCell.isVisited();
     }
 
     private TableCell up() {
@@ -80,8 +98,8 @@ class TableCell {
 
     private TableCell right() {
         boolean isLastIndex = index == (listSize - 1);
-        boolean isRightEdge = rightIndex() % dim == 0;
-        return !isLastIndex && !isRightEdge ? cells.get(rightIndex()) : null;
+        boolean isRightEdge = (rightIndex() % dim) == 0;
+        return (!isLastIndex && !isRightEdge) ? cells.get(rightIndex()) : null;
     }
 
     private int upIndex() {
@@ -100,19 +118,16 @@ class TableCell {
         return index + 1;
     }
 
-    public boolean readExpensiveCellValue() {
-        if (cachedValue == null) {
-            cachedValue = expensiveOperationToGetCellValue();
-        }
-        return cachedValue;
-    }
-
-    private boolean expensiveOperationToGetCellValue() {
-        return input.get(index);
-    }
-
     private boolean isVisited() {
         return visited;
+    }
+
+    private int row() {
+        return index / dim;
+    }
+
+    private int column() {
+        return index % dim;
     }
 
 }

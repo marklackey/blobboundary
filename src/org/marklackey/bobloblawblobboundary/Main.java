@@ -16,9 +16,9 @@ public class Main {
         input.addAll(Lists.newArrayList(
             false, false, false, true, true, false, false, false, false));
         Boundaries boundaries = new BlobBoundaryBreadthFirst().solve(input);
-        pln("Results for input: false, false, false, true, true, false, false, false, false\n");
-        pln("Cell Reads: " + input.getGetCount());
-        pln(boundaries);
+        println("Results for input: false, false, false, true, true, false, false, false, false\n");
+        println("Cell Reads: " + input.getGetCount());
+        println(boundaries);
 
         String inputStr =
             "0000000000 0011100000 0011111000 0010001000 0011111000" +
@@ -31,17 +31,17 @@ public class Main {
                 input.add(true);
             }
         }
-        pln("\nResults for input:" + inputStr + "\n");
+        println("\nResults for input:" + inputStr + "\n");
         boundaries = new BlobBoundaryBreadthFirst().solve(input);
-        pln("Cell Reads: " + input.getGetCount());
-        pln(boundaries);
+        println("Cell Reads: " + input.getGetCount());
+        println(boundaries);
     }
 
-    public static void pln(Object value) {
+    public static void println(Object value) {
         System.out.println(value);
     }
 
-    public static void pln(int value) {
+    public static void println(int value) {
         System.out.println(value);
     }
 }
