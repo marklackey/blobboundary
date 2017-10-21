@@ -1,5 +1,7 @@
 package org.marklackey.bobloblawblobboundary;
 
+import static org.marklackey.bobloblawblobboundary.Main.println;
+
 class BlobBoundaryRowByRow {
     void solve(boolean[][] input) {
 
@@ -35,15 +37,12 @@ class BlobBoundaryRowByRow {
                 }
             }
         }
-        pln(" Reads: " + reads);
-        pln("   Top: " + top);
-        pln("  Left: " + left);
-        pln("Bottom: " + bottom);
-        pln(" Right: " + right);
+        println(" Reads: " + reads);
+        println("   Top: " + top);
+        println("  Left: " + left);
+        println("Bottom: " + bottom);
+        println(" Right: " + right);
     }
 
-    private static void pln(String s) {
-        System.out.println(s);
-    }
 
 }

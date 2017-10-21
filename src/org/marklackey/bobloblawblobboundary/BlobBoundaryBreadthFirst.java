@@ -19,14 +19,20 @@ public class BlobBoundaryBreadthFirst {
     private TableCell findAnOccupiedCell() {
         TableCell currentCell;
         int randomReadCnt = 0;
+        boolean occupied;
         Random randomNumberGenerator = new Random();
         do {
-            int currentIndex = randomNumberGenerator.nextInt(cells.size());
-            currentCell = cells.get(currentIndex);
+            currentCell = randomCell(randomNumberGenerator);
+            occupied = currentCell.readExpensiveCellValue();
             randomReadCnt++;
-        } while (!currentCell.readExpensiveCellValue());
+        } while (!occupied);
         Main.println("Random Reads:" + randomReadCnt);
         return currentCell;
+    }
+
+    private TableCell randomCell(Random randomNumberGenerator) {
+        int currentIndex = randomNumberGenerator.nextInt(cells.size());
+        return cells.get(currentIndex);
     }
 
     private void initialize(ListWithGetCounting<Boolean> input) {
