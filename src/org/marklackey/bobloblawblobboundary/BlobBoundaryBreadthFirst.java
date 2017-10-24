@@ -36,10 +36,10 @@ public class BlobBoundaryBreadthFirst {
     }
 
     private void initialize(ListWithGetCounting<Boolean> input) {
-        boundaries = new Boundaries(input.size());
         if (!isValidInput(input)) {
             throw new IllegalArgumentException("Invalid Blob Definition.");
         }
+        boundaries = new Boundaries(input.size());
         cells = new ArrayList<>();
         for (int index = 0; index < input.size(); index++) {
             cells.add(new TableCell(cells, input, index));

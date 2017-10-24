@@ -44,16 +44,16 @@ class TableCell {
 
     private void updateBoundaryValues(Boundaries boundaries) {
         if (row() <= boundaries.top) {
-            boundaries.top = index / dim;
+            boundaries.top = row();
         }
         if (row() >= boundaries.bottom) {
-            boundaries.bottom = index / dim;
+            boundaries.bottom = row();
         }
         if (column() <= boundaries.left) {
-            boundaries.left = index % dim;
+            boundaries.left = column();
         }
         if (column() >= boundaries.right) {
-            boundaries.right = index % dim;
+            boundaries.right = column();
         }
     }
 
